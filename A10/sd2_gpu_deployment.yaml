@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sd2-gpu-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sd2-gpu-app
+  template:
+    metadata:
+      labels:
+        app: sd2-gpu-app
+    spec:
+      containers:
+        - name: sd2-gpu-container
+          image: 623387590579.dkr.ecr.eu-central-1.amazonaws.com/sd-gpu:v0.1
+          ports:
+            - containerPort: 5000
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+            requests:
+              nvidia.com/gpu: 1
