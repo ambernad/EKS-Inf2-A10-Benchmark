@@ -2,7 +2,7 @@
 This is repository with scripts and EKS manifests to run Stable Diffusion 2 benchmark on EKS nodes with Amazon Inferentia2 and NVidia A10
 
 # Implementation guide:
-1. Use EC2 with DLAMI compile model for Inf2. Save model artefacts locally on EC2. Very specific for each model. Better to look for pre-built compilation script
+1. Use EC2 with DLAMI to compile model for Inf2. Save model artefacts locally on EC2. Very specific for each model. Better to look for pre-built compilation script
 2. Use Deep Learning Containers. Modify DLC (add package, copy model from step1, define custom CMD) and create dockerfile. Example: Inf2/sd2-inf2-inference-dockerfile
 3. Write python script where model  should be deployed as API. Use Flask or FastAPI. Example: s3://abernads-ml-artefacts/sd2_service.py . Use this script in CMD part in dockerfile
 4. Build and run docker container locally on the same EC2 where model was compiled. Example: 
