@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sd2-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sd2-app
+  template:
+    metadata:
+      labels:
+        app: sd2-app
+    spec:
+      containers:
+        - name: sd2-container
+          image: 623387590579.dkr.ecr.us-east-2.amazonaws.com/sd-inf2:v0.4
+          ports:
+            - containerPort: 5000
+          resources:
+            limits:
+              aws.amazon.com/neurondevice: 1
+            requests:
+              aws.amazon.com/neurondevice: 1

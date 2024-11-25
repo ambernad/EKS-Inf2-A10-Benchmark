@@ -1,0 +1,19 @@
+# bern-ml2-eks.yaml
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: bern-ml2-eks
+  region: us-east-2
+
+managedNodeGroups:
+  - name: bern-inf-nodegroup
+    amiFamily: AmazonLinux2
+    ami: ami-0d82554c5af22453c
+    labels: { role: workers }
+    instanceType: inf2.8xlarge
+    desiredCapacity: 1
+    volumeSize: 150
+    overrideBootstrapCommand: |
+      #!/bin/bash
+      /etc/eks/bootstrap.sh bern-ml2-eks
